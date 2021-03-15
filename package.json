@@ -4,7 +4,8 @@
   "description": "Repositório criado para base da API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx nodemon src/server.js",
+    "build": "sucrase ./src -d ./outDir --transforms imports"
   },
   "repository": {
     "type": "git",
