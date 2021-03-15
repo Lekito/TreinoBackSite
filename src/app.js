@@ -1,5 +1,7 @@
-const express = require('express');
-const routes = require('./routes')
+//const express = require('express'); modo antigo do JavaScript
+//const routes = require('./routes');
+import express from 'express'; // modo novo do JavaScript
+import routes from './routes';
 
 class App{
     constructor(){
@@ -11,4 +13,5 @@ class App{
     }
 }
 
-module.exports = new App().app;
+//module.exports = new App().app;  modo antigo do JavaScript
+export default new App().app;
