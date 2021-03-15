@@ -19,3 +19,10 @@ npx nodemon src/server.js // iniciando o servidor com nodemon
 // modo antigo -> const express = require("express");
 // modo novo -> import express from 'express';
 npm install  -D sucrase
+
+## Instalar o MongoDB 
+npm install  --save mongodb
+
+## Instalar o Mongoose 
+// Mongoose - traduz os dados do banco de dados para objetos JavaScript para que possam ser utilizados por sua aplicação. 
+npm install --save mongoose
