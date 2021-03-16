@@ -2,6 +2,7 @@
 //const routes = require('./routes');
 import express from 'express'; // modo novo do JavaScript
 import routes from './routes';
+import './database';
 
 class App{
     constructor(){
