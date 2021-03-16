@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 const routes = new Router();
 
 // Conexão com o banco de dados
+/*
 mongoose.connect('mongodb://localhost/alex', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -16,6 +17,7 @@ mongoose.connect('mongodb://localhost/alex', {
 }).catch((erro) => {
     console.log("Erro: Conexão com o MongoDB não foi realizada com sucesso! " + erro);
 });
+*/
 
 routes.get('/', (require, response) => {
     response.send("Alex");
