@@ -2,10 +2,13 @@ import { response, Router} from 'express';
 import User from './app/models/User';
 
 import mongoose from 'mongoose';
+import UserController from './app/controllers/UserController';
 
 const routes = new Router();
 
-routes.get('/', async(require, response) => {
+routes.post('/users', UserController.store);
+
+/*routes.get('/', async(require, response) => {
     await User.create( {
         nome: 'Alan',
         email: 'alan_eng@gmail.com',
@@ -16,6 +19,7 @@ routes.get('/', async(require, response) => {
         return response.status(200).json({error: "Usuário cadastrado com sucesso!"}); 
     });
 });
+*/
 
 
 routes.get('/contatos', (require, response) => {
