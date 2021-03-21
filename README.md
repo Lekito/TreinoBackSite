@@ -14,7 +14,7 @@ npm install -D nodemon
 npx nodemon src/server.js // iniciando o servidor com nodemon
 
 ## Instalar sucrase
-// O sucrase produz código JS válido - par import do ES6
+#### O sucrase produz código JS válido - par import do ES6
 // Com o sucrase não precisamos mas usar o modo antigo do JS de importar.Exemplo: 
 // modo antigo -> const express = require("express");
 // modo novo -> import express from 'express';
