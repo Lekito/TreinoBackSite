@@ -30,3 +30,7 @@ npm install --save mongoose
 ## Instalar o yup
 #### Validar campo
 npm install --save yup
+
+## Instalar bcryptjs
+#### Esse é um módulo para criptografar a senha.
+npm install --save bcryptjs
