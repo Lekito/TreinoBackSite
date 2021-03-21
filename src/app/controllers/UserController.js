@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import bcrypt from 'bcryptjs';
 import User from '../models/User';
 
 class UserController{
@@ -27,7 +28,10 @@ class UserController{
             });
         }
 
-        const user = await User.create(require.body, (error) => {
+        var dados = require.body;
+        dados.password = await bcrypt.hash(dados.password, 8);
+
+        const user = await User.create(dados, (error) => {
             if(error) return response.status(400).json({
                 error: true,
                 code: 101,
