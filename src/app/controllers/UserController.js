@@ -42,8 +42,33 @@ class UserController{
                 error: false,
                 message: "Usuario cadastrado com sucesso!",
                 dados: user
+            });
+        });
+    };
+
+    async delete(require, response){
+
+        const userExists = await User.findOne({_id: require.params.id});
+
+        if(!userExists){
+            return response.status(400).json({
+                error: true,
+                code: 121,
+                message: "Erro: Usuário não encontrado!"
+            })
+        }
+
+        const user = await User.deleteOne({_id: require.params.id}, (err) => {
+            if(err) return response.status(400).json({
+                error: true,
+                code: 122,
+                message: "Error: Usuário não foi apagado com sucesso!"
             })
         });
+        return response.json({
+            error: false,
+            message: "Usuário apagado com sucesso!"
+        })
     }
 }
 
