@@ -34,3 +34,6 @@ npm install --save yup
 ## Instalar bcryptjs
 #### Esse é um módulo para criptografar a senha.
 npm install --save bcryptjs
+
+## Instalar a dependencia para JWT
+npm install --save jsonwebtoken
