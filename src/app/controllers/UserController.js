@@ -3,6 +3,22 @@ import bcrypt from 'bcryptjs';
 import User from '../models/User';
 
 class UserController{
+
+    async index(require, response){
+        await User.find({}).then((users) => {
+            return response.json({
+                error: false,
+                users: users
+            })
+        }).catch((erro) => {
+            return response.status(400).json({
+                erro: true,
+                code: 106,
+                message: "Erro: Não foi possível executar a solicitação!"
+            })
+        })
+    }
+
     async store(require, response){
 
         const schema = yup.object().shape({
