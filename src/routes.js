@@ -10,6 +10,7 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.delete('/users/:id', authMiddlewares, UserController.delete);
 routes.post('/login', LoginController.store)
+routes.get('/users', UserController.index);
 
 
 routes.get('/contatos', (require, response) => {
