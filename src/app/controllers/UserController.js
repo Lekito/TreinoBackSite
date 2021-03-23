@@ -5,7 +5,7 @@ import User from '../models/User';
 class UserController{
 
     async index(require, response){
-        await User.find({}).then((users) => {
+        await User.find({}).select("-password").then((users) => {
             return response.json({
                 error: false,
                 users: users
