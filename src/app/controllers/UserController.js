@@ -5,7 +5,15 @@ import User from '../models/User';
 class UserController{
 
     async index(require, response){
-        await User.find({}).select("-password").then((users) => {
+        const {page = 1} = require.query;
+        console.log( " Pagina " + page);
+        const { limit = 40} = require.query;
+
+        await User.paginate({},{
+            select: '_id name email',
+            page: page, 
+            limit: limit
+        }).then((users) => {
             return response.json({
                 error: false,
                 users: users
