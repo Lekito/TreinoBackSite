@@ -23,8 +23,27 @@ class UserController{
                 erro: true,
                 code: 106,
                 message: "Erro: Não foi possível executar a solicitação!"
+            });
+        });
+    };
+
+    async show(require, response){
+        User.findOne({_id: require.params.id}, '_id name email createdAt updatedAt').then((user) => {
+            return response.json({
+                error: false,
+                code: 200,
+                message: "Acesso permitido!",
+                user: user
+            });
+        }).catch((erro) => {
+            return response.status(400).json({
+                error: true,
+                code: 107,
+                message: "Erro: Usuário não encontrado!"
             })
-        })
+        });
+        
+        
     }
 
     async store(require, response){
@@ -33,7 +52,7 @@ class UserController{
             name: yup.string().required(),
             email: yup.string().email().required(),
             password: yup.string().required().min(6)
-        })
+        });
 
         if(!(await schema.isValid(require.body))){
             return response.status(400).json({
@@ -41,7 +60,7 @@ class UserController{
                 code: 103,
                 message: "Error: Dados inválidos!"
             });
-        }
+        };
 
         const emailExiste = await User.findOne({email: require.body.email})
         if(emailExiste){
@@ -50,7 +69,7 @@ class UserController{
                 code: 102,
                 message: "Error: Este e-mail já está cadastrado! Tente outro e-mail!"
             });
-        }
+        };
 
         var dados = require.body;
         dados.password = await bcrypt.hash(dados.password, 8);
@@ -79,21 +98,21 @@ class UserController{
                 error: true,
                 code: 121,
                 message: "Erro: Usuário não encontrado!"
-            })
-        }
+            });
+        };
 
         const user = await User.deleteOne({_id: require.params.id}, (err) => {
             if(err) return response.status(400).json({
                 error: true,
                 code: 122,
                 message: "Error: Usuário não foi apagado com sucesso!"
-            })
+            });
         });
         return response.json({
             error: false,
             message: "Usuário apagado com sucesso!"
-        })
-    }
-}
+        });
+    };
+};
 
 export default new UserController();
