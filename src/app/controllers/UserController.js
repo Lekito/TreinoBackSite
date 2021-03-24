@@ -89,6 +89,65 @@ class UserController{
         });
     };
 
+    async update(require, response){
+        const schema = yup.object().shape({
+            _id: yup.string().required(),
+            name: yup.string(),
+            email: yup.string().email(),
+            password: yup.string().min(6)
+        });
+        if(!(await schema.isValid(require.body))){
+            return response.status(400).json({
+                error: true,
+                code: 108,
+                message: "Erro: Dados do formulário inválido!"
+            });
+        };
+
+        const { _id, email } = require.body;
+
+        const userExists = await User.findOne({_id : _id});
+
+        if(!userExists){
+            return response.status(400).json({
+                error: true,
+                code: 109,
+                message: "Erro: Usuário não encontrado!"
+            });
+        };
+
+        if(email != userExists.email){
+            const emailExists = await User.findOne({email: email});
+            if(emailExists){
+                return response.status(400).json({
+                    error: true,
+                    code: 110,
+                    message: "Erro: Esse e-mail já esta cadastrado!"
+                });
+            };
+        };
+
+        var dados = require.body;
+        if(dados.password){
+            dados.password = await bcrypt.hash(dados.password, 8);
+        };
+
+        await User.updateOne({_id: dados._id}, dados, (err) => {
+            if(err) return response.status(400).json({
+                error: true,
+                code: 111,
+                message: "Erro: Usuário não foi editado com sucesso!"
+            });
+
+            return response.status(200).json({
+                error: false,
+                message: "Usuário editado com sucesso!"
+            });
+        });
+
+        
+    }
+
     async delete(require, response){
 
         const userExists = await User.findOne({_id: require.params.id});
