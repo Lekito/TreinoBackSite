@@ -144,9 +144,7 @@ class UserController{
                 message: "Usuário editado com sucesso!"
             });
         });
-
-        
-    }
+    };
 
     async delete(require, response){
 
