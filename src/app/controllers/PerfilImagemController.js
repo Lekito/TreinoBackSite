@@ -20,10 +20,18 @@ class PerfilImagemController{
             })
         })
 
+        await User.updateOne({_id: require.userId}, dadosImagem, (err) => {
+            if(err) return response.status(400).json({
+                error: true,
+                code: 129,
+                message: "Erro: Imagem do perfil não editada com sucesso!"
+            })
+        })
+
         console.log(dadosImagem);
         return response.json({
             error: false,
-            message: "Upload img user"
+            message: "Imagem do perfil editado com sucesso!"
         });
     }
 };
