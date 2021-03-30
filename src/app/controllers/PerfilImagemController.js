@@ -10,7 +10,6 @@ class PerfilImagemController{
         }
 
         await User.findOne({_id: require.userId}, '_id fileName').then((user) => {
-            console.log(user);
             require.dadosImgUser = user.fileName; 
         }).catch((err) => {
             return response.status(400).json({
@@ -29,7 +28,6 @@ class PerfilImagemController{
         })
 
         const imgAntiga = require.file.destination + "/" + require.dadosImgUser;
-        console.log(imgAntiga);
 
         fs.access(imgAntiga, (erro) =>{
             if(!erro){
