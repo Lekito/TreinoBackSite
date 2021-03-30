@@ -28,7 +28,7 @@ class UserController{
     };
 
     async show(require, response){
-        User.findOne({_id: require.params.id}, '_id name email createdAt updatedAt').then((user) => {
+        User.findOne({_id: require.params.id}, '_id name email createdAt updatedAt originalName fileName').then((user) => {
             return response.json({
                 error: false,
                 code: 200,
