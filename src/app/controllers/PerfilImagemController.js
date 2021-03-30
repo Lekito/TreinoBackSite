@@ -3,7 +3,6 @@ import fs from 'fs';
 
 class PerfilImagemController{
     async update(require, response){
-        console.log(require.file);
 
         const dadosImagem = {
             originalName: require.file.originalname,
@@ -12,6 +11,7 @@ class PerfilImagemController{
 
         await User.findOne({_id: require.userId}, '_id fileName').then((user) => {
             console.log(user);
+            require.dadosImgUser = user.fileName; 
         }).catch((err) => {
             return response.status(400).json({
                 error: true,
@@ -28,7 +28,17 @@ class PerfilImagemController{
             })
         })
 
-        console.log(dadosImagem);
+        const imgAntiga = require.file.destination + "/" + require.dadosImgUser;
+        console.log(imgAntiga);
+
+        fs.access(imgAntiga, (erro) =>{
+            if(!erro){
+                fs.unlink(imgAntiga, erro =>{
+                    console.log("Imagem antiga excluida com sucesso.");
+                })  
+            }
+        })
+
         return response.json({
             error: false,
             message: "Imagem do perfil editado com sucesso!"
