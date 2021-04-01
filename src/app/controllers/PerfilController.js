@@ -5,7 +5,7 @@ import User from '../models/User';
 class PerfilController{
     async show(require, response){
         User.findOne({_id: require.userId}, '_id name email createdAt updatedAt fileName').then((user) => {
-            var url = "http://localhost:8080/tmp/uploads/users/" + user.fileName;
+            var url = "http://localhost:8080/files/users/" + user.fileName;
             return response.json({
                 error: false,
                 user: user,
