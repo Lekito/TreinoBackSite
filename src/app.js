@@ -3,6 +3,7 @@
 import express from 'express'; // modo novo do JavaScript
 import routes from './routes';
 import './config/conexao';
+import path from 'path';
 
 class App{
     constructor(){
@@ -12,6 +13,10 @@ class App{
     }
     middlewares() {
         this.app.use(express.json());
+        this.app.use(
+            '/tmp/uploads',
+            express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
+        );
     }
     routes(){
         this.app.use(routes)
