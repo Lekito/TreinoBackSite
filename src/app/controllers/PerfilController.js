@@ -1,11 +1,12 @@
 import * as yup from 'yup';
 import bcrypt from 'bcryptjs';
 import User from '../models/User';
+import config from '../../config/config';
 
 class PerfilController{
     async show(require, response){
         User.findOne({_id: require.userId}, '_id name email createdAt updatedAt fileName').then((user) => {
-            var url = "http://localhost:8080/files/users/" + user.fileName;
+            var url = config.url + "/files/users/" + user.fileName;
             return response.json({
                 error: false,
                 user: user,
