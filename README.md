@@ -43,3 +43,8 @@ npm install --save mongoose-paginate-v2
 
 ## Multer é middleware node.js para manipulação multipart/form-data, usado para o upload de arquivos.
 npm install --save multer
+
+## Cors permite acesso a API
+npm install --save cors
+
+// Obs.: --save serve para incluir no arquivo package.json
