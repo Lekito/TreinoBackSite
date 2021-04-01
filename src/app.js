@@ -14,7 +14,7 @@ class App{
     middlewares() {
         this.app.use(express.json());
         this.app.use(
-            '/tmp/uploads',
+            '/files',
             express.static(path.resolve(__dirname, "..", "tmp", "uploads"))
         );
     }
