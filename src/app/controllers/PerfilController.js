@@ -4,10 +4,12 @@ import User from '../models/User';
 
 class PerfilController{
     async show(require, response){
-        User.findOne({_id: require.userId}, '_id name email createdAt updatedAt').then((user) => {
+        User.findOne({_id: require.userId}, '_id name email createdAt updatedAt fileName').then((user) => {
+            var url = "http://localhost:8080/tmp/uploads/users/" + user.fileName;
             return response.json({
                 error: false,
-                user: user
+                user: user,
+                url: url
             });
         }).catch((erro) => {
             return response.status(400).json({
