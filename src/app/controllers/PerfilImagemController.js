@@ -4,6 +4,14 @@ import fs from 'fs';
 class PerfilImagemController{
     async update(require, response){
 
+        if(!require.file){
+            return response.status(400).json({
+                error: true,
+                code: 129,
+                message: "Erro: Selecione uma imagem valida JPEG ou PNG!"
+            });
+        };
+
         const dadosImagem = {
             originalName: require.file.originalname,
             fileName: require.file.filename
