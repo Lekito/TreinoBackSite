@@ -48,3 +48,9 @@ npm install --save multer
 npm install --save cors
 
 // Obs.: --save serve para incluir no arquivo package.json
+
+## Gerar o backup do banco de dados MongoDB
+mongodump --db alex --out c:\data\db
+
+## Restaurar o banckup do banco de dados MongoDB
+mongorestore --db alex c:\data\db\alex
